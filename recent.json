@@ -1,0 +1,7 @@
+[
+  { "title": "Intro to HTML", "url": "tutorials/html-intro.html" },
+  { "title": "CSS Basics", "url": "tutorials/css-basics.html" },
+  { "title": "JavaScript Essentials", "url": "tutorials/js-essentials.html" },
+  { "title": "Building a Website Layout", "url": "tutorials/layout.html" },
+  { "title": "Responsive Design", "url": "tutorials/responsive.html" }
+]

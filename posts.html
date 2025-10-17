@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posts - LuneTechs</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Sticky Navbar */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #0080ff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    padding-right: 95px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  nav ul li {
+    margin: 0 20px;
+  }
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: normal;
+    font-size: 15px;
+    transition: color 0.3s;
+  }
+  nav ul li a:hover {
+    color: #e7f708;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+    padding-top: 30px;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(to right, #4e976c, #00000f59, #4e976c);
+    color: white;
+    padding: 35px 20px;
+    text-align: center;
+  }
+  .hero h1 {
+    margin: 0;
+    font-size: 32px;
+  }
+  .hero p {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  /* Search Bar */
+  .search-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: #eee;
+  }
+  #searchInput {
+    width: 50%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  /* Dictionary Layout */
+  .dictionary-wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+  }
+
+  /* Alphabet Sidebar */
+  .alphabet-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  padding: 5px;
+  border-bottom: 2px solid #ddd;
+}
+.alphabet-bar div {
+  margin: 5px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-weight:normal;
+  color: #003366;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+.alphabet-bar div:hover {
+  background: #f1f1f1;
+}
+
+
+  /* Terms Area */
+  .terms-area {
+    flex: 1;
+    padding-left: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .term-box {
+    font-size: 14px;
+    cursor: pointer;
+    color: #222;
+    padding: 4px;
+    border-radius: 3px;
+    transition: background 0.3s;
+    position: relative;
+  }
+  .term-box:hover {
+    background: #f9f9f9;
+  }
+
+  .definition {
+    display: none;
+    font-size: 13px;
+    margin-top: 4px;
+    background: #fafafa;
+    border-left: 3px solid #0073e6;
+    padding: 6px 8px;
+    border-radius: 3px;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #0f0129;
+    color: rgb(248, 244, 4);
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+  }
+  footer a {
+    color: #ffd700;
+    text-decoration:none;
+    margin: 0 5px;
+  }
+  footer:hover {
+    background-color: rgb(5, 0, 24);
+  }
+
+  /* Responsive Design: Media Queries */
+
+/* For tablets (screens ≤ 768px) */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  nav ul li {
+    margin: 8px 0;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .dictionary-wrapper {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .terms-area {
+    grid-template-columns: repeat(2, 1fr);
+    padding-left: 0;
+  }
+
+  #searchInput {
+    width: 80%;
+  }
+}
+
+/* For mobile phones (screens ≤ 480px) */
+@media (max-width: 480px) {
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero {
+    padding: 25px 10px;
+  }
+
+  .hero h1 {
+    font-size: 22px;
+  }
+
+  .terms-area {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .alphabet-bar div {
+    padding: 5px 6px;
+    font-size: 13px;
+  }
+
+  footer {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Sticky Navbar -->
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="courses.html">Courses</a></li>
+    <li><a href="posts.html">Terminologies</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1>Common ICT Terminologies</h1>
+  <p>These are the terminologies you will mostly meet in ICT environments</p>
+</section>
+
+<!-- Search Bar -->
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search terms...">
+</div>
+
+ <!-- Alphabet bar -->
+  <div class="alphabet-bar" id="alphabetBar"></div>
+
+
+<!-- Dictionary Section -->
+<div class="dictionary-wrapper">
+ 
+  <!-- Terms area -->
+  <div class="terms-area" id="termsArea"></div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 LuneTechs | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+</footer>
+
+<script>
+  // Sample terms
+  const terms = [
+    {title: "Algorithm", def: "A step-by-step set of operations that solve a problem or perform a task in computing."},
+    {title: "Browser", def: "Software application used to access and view websites on the internet."},
+    {title: "Computer", def: "An electronic device that processes data and performs tasks according to instructions."},
+    {title: "Database", def: "An organized collection of structured information or data, usually stored electronically."},
+    {title: "Encryption", def: "The process of encoding data so only authorized parties can access it."},
+    {title: "Hardware", def: "The physical components of a computer system that you can touch, like the CPU, monitor, and keyboard."},
+    {title: "Input Device", def: "Hardware used to send data into a computer, such as a keyboard or mouse."},
+    {title: "Output Device", def: "Hardware used to display or present information from a computer, such as a monitor or printer."},
+    {title: "Software", def: "Programs and applications that instruct the computer hardware on how to perform tasks."},
+    {title: "Zip utility", def: "Programs and applications that instruct the computer hardware on how to perform tasks."},
+    {title: "WSL", def: "Programs and applications that instruct the computer hardware on how to perform tasks."},
+  ];
+  // Additional terms
+terms.push(
+  {title: "Program", def: "A set of instructions written in a programming language that tells a computer how to perform a specific task."},
+  {title: "Motherboard", def: "The main printed circuit board (PCB) in a computer that connects and allows communication between all hardware components such as CPU, memory, and storage devices."},
+  {title: "Keyboard", def: "An input device used to type data and commands into a computer using keys representing letters, numbers, and symbols."},
+  {title: "Mouse", def: "A pointing device that detects two-dimensional motion to control the position of a cursor on a computer screen."},
+  {title: "System Unit", def: "The main body of a desktop computer that houses critical hardware components like the motherboard, CPU, RAM, and storage drives."},
+  {title: "ATX", def: "A standard motherboard and power supply form factor that defines dimensions, mounting points, and power connectors for PC cases."},
+  {title: "SATA", def: "Serial Advanced Technology Attachment; an interface used to connect storage devices such as HDDs and SSDs to the computer motherboard."},
+  {title: "PCI", def: "Peripheral Component Interconnect; a hardware bus used for adding expansion cards like graphics or sound cards to a motherboard."},
+  {title: "Chrome", def: "A web browser developed by Google, known for its speed, simplicity, and wide compatibility with modern web technologies."},
+  {title: "Firefox", def: "An open-source web browser developed by Mozilla, focusing on privacy, customization, and performance."},
+  {title: "Microsoft", def: "A leading technology company that develops computer software, hardware, and services such as Windows OS and Microsoft Office."},
+  {title: "Microsoft Edge", def: "A web browser developed by Microsoft, replacing Internet Explorer and offering enhanced speed, security, and integration with Windows."},
+  {title: "Operating System", def: "Software that manages computer hardware and software resources and provides services for computer programs."},
+  {title: "Programming", def: "The process of designing and writing code that instructs a computer to perform specific operations or solve problems."},
+  {title: "Internet", def: "A global network of interconnected computers that communicate and share data using standardized communication protocols."},
+  {title: "Network", def: "A group of interconnected computers and devices that share resources and communicate with each other."},
+  {title: "Router", def: "A networking device that forwards data packets between computer networks and connects devices to the internet."},
+  {title: "Switch", def: "A network device that connects multiple devices within a LAN and forwards data to specific destinations using MAC addresses."},
+  {title: "Hub", def: "A simple network device that connects multiple computers but sends data to all connected devices regardless of destination."},
+  {title: "DVR", def: "Digital Video Recorder; a device used to record video from security cameras onto a hard drive for playback and monitoring."},
+  {title: "NVR", def: "Network Video Recorder; a device that records video from IP cameras over a network for surveillance purposes."},
+  {title: "Coaxial Cable", def: "A type of electrical cable used to transmit video and data signals with minimal interference, commonly used in CCTV and television systems."},
+  {title: "Fiber Optic Cable", def: "A high-speed data transmission cable that uses light to carry signals over long distances with minimal loss."},
+  {title: "Telecommunication", def: "The exchange of information over significant distances by electronic means such as phones, radio, or internet."},
+  {title: "Topology", def: "The arrangement or layout of devices and connections in a computer network, such as star, bus, or ring topology."},
+  {title: "OSI", def: "Open Systems Interconnection model; a conceptual framework that standardizes network communication into seven layers."},
+  {title: "HTTP", def: "Hypertext Transfer Protocol; a communication protocol used for transmitting web pages over the internet."},
+  {title: "HTTPS", def: "Hypertext Transfer Protocol Secure; an encrypted version of HTTP that ensures secure data transfer on the web."},
+  {title: "WWW", def: "World Wide Web; a collection of interconnected web pages and resources accessed via the internet using browsers."},
+  {title: "USB", def: "Universal Serial Bus; a standard interface used to connect external devices such as flash drives, keyboards, and printers to computers."},
+  {title: "CPU", def: "Central Processing Unit; the main processor of a computer that performs instructions and calculations."},
+  {title: "GPU", def: "Graphics Processing Unit; a specialized processor designed to handle complex graphics and visual data processing tasks."},
+  {title: "RAM", def: "Random Access Memory; temporary memory used by a computer to store data and instructions while programs are running."},
+  {title: "ROM", def: "Read-Only Memory; non-volatile memory used to store firmware and permanent instructions for computer startup."},
+  {title: "HDD", def: "Hard Disk Drive; a traditional magnetic storage device used for long-term data storage."},
+  {title: "SSD", def: "Solid State Drive; a faster and more reliable storage device that uses flash memory instead of spinning disks."},
+  {title: "Security", def: "Measures and practices designed to protect computer systems, networks, and data from unauthorized access or damage."},
+  {title: "Cybercrime", def: "Illegal activities carried out using computers or networks, such as hacking, identity theft, or online fraud."},
+  {title: "Cybersecurity", def: "The practice of protecting computer systems and networks from cyberattacks, breaches, and unauthorized access."},
+  {title: "Virus", def: "A malicious program that attaches to other files or software and spreads, often damaging data or systems."},
+  {title: "Malware", def: "Any malicious software designed to disrupt, damage, or gain unauthorized access to computer systems."},
+  {title: "Ransomware", def: "Malicious software that locks or encrypts data and demands payment to restore access."},
+  {title: "Trojan", def: "A type of malware that disguises itself as legitimate software to gain access to a user's system."},
+  {title: "Hack", def: "The act of gaining unauthorized access to computer systems or networks."},
+  {title: "Hacker", def: "A person who uses computer skills to access or manipulate systems, either legally (ethical) or illegally."},
+  {title: "White Hacker", def: "An ethical hacker who uses their skills to find and fix security vulnerabilities."},
+  {title: "Website", def: "A collection of web pages accessible on the internet under a common domain name."},
+  {title: "Embedded System", def: "A specialized computer system designed to perform dedicated functions within a larger system, such as in appliances or vehicles."},
+  {title: "WiFi", def: "A wireless networking technology that allows devices to connect to the internet or communicate without cables."},
+  {title: "Domain", def: "A unique name that identifies a website on the internet, such as example.com."},
+  {title: "DNS", def: "Domain Name System; a service that translates domain names into IP addresses used by computers."},
+  {title: "E-mail", def: "Electronic mail; a method of sending digital messages and files over the internet."},
+  {title: "Gmail", def: "A free email service developed by Google, offering cloud storage and integration with other Google services."},
+  {title: "TCP", def: "Transmission Control Protocol; ensures reliable communication between devices on a network."},
+  {title: "IP Address", def: "A unique numerical identifier assigned to each device connected to a network or the internet."},
+  {title: "Subnet", def: "A segmented section of a larger network designed to improve performance and security."},
+  {title: "WAN", def: "Wide Area Network; a network that covers large geographical areas, connecting multiple smaller networks."},
+  {title: "LAN", def: "Local Area Network; a network that connects computers within a small area, such as an office or home."},
+  {title: "MAN", def: "Metropolitan Area Network; a network that connects multiple LANs within a city or region."},
+  {title: "PAN", def: "Personal Area Network; a small network connecting personal devices such as phones, tablets, and laptops."},
+  {title: "Maintenance", def: "The process of regularly checking, cleaning, and updating computer systems to ensure optimal performance."},
+  {title: "Repair", def: "The process of fixing hardware or software faults in computer systems to restore functionality."},
+  {title: "HDMI", def: "High-Definition Multimedia Interface; a digital interface for transmitting high-quality video and audio signals."},
+  {title: "VGA", def: "Video Graphics Array; an older analog interface used to connect monitors to computers."},
+  {title: "BIOS", def: "Basic Input/Output System; firmware that initializes and tests hardware during computer startup."},
+  {title: "UEFI", def: "Unified Extensible Firmware Interface; a modern replacement for BIOS that supports larger drives and faster booting."},
+  {title: "Legacy System", def: "An old computer system or software still in use, even though newer technology is available."},
+  {title: "GPT", def: "GUID Partition Table; a modern disk partitioning system that supports large storage drives and more partitions."},
+  {title: "MBR", def: "Master Boot Record; an older disk partitioning scheme used to manage drive structure and boot information."},
+  {title: "FAT32", def: "File Allocation Table 32; a simple file system compatible with many devices but limited in file size support."},
+  {title: "NTFS", def: "New Technology File System; a Windows file system that supports large files, permissions, and data recovery."},
+  {title: "Memory", def: "Computer storage used to temporarily or permanently store data and instructions for processing."},
+  {title: "Register", def: "Small, fast storage locations within the CPU used to hold instructions and data temporarily during processing."},
+  {title: "Clock", def: "An electronic pulse generator that synchronizes all computer operations by providing timing signals."},
+  {title: "Utility", def: "Software tools that help maintain, manage, or optimize computer performance."},
+  {title: "System Software", def: "Software that controls computer hardware and provides a platform for running application software."},
+  {title: "Application Software", def: "Programs designed for end users to perform specific tasks such as word processing or web browsing."},
+  {title: "Pixels", def: "The smallest units of a digital image, representing color and brightness on screens."},
+  {title: "Folder", def: "A virtual container used to organize files and other folders on a computer."},
+  {title: "File", def: "A digital document or data unit stored on a computer that can be opened, edited, or shared."},
+  {title: "File Explorer", def: "A graphical user interface tool in Windows that allows users to browse and manage files and folders."},
+  {title: "Antivirus Software", def: "A program that detects, prevents, and removes malware and viruses from computer systems."},
+  {title: "Fan", def: "A cooling device used in computers to prevent overheating by circulating air over internal components."},
+  {title: "Heat Sink", def: "A metal component that absorbs and disperses heat away from computer chips and processors."},
+  {title: "Code", def: "A series of instructions written in a programming language to control a computer's behavior."},
+  {title: "CMD", def: "Command Prompt; a command-line interpreter in Windows used to execute text-based commands."},
+  {title: "PowerShell", def: "A task automation and configuration management tool for Windows, using scripting and command-line interface."},
+  {title: "CD", def: "Compact Disc; an optical storage medium used to store digital data such as music or software."},
+  {title: "CD-ROM", def: "Compact Disc Read-Only Memory; a CD format that stores data permanently and cannot be rewritten."},
+  {title: "Apache", def: "An open-source web server software that delivers web content to users over the internet."},
+  {title: "MySQL", def: "An open-source relational database management system used for storing and managing structured data."},
+  {title: "Backend", def: "The server-side part of a software or website that handles logic, database operations, and data processing."},
+  {title: "Frontend", def: "The user interface part of a website or software that users interact with directly."},
+  {title: "Full Stack", def: "A developer skilled in both frontend and backend development."},
+  {title: "Copy", def: "A command that duplicates selected text or files to be used elsewhere without removing the original."},
+  {title: "Paste", def: "A command that inserts copied or cut data into a selected location."},
+  {title: "Cut", def: "A command that removes selected data from one location to place it elsewhere."},
+  {title: "Desktop Computer", def: "A personal computer designed to be used at a fixed location, consisting of a monitor, keyboard, and system unit."},
+  {title: "Laptop", def: "A portable computer that integrates screen, keyboard, and battery into one compact device."},
+  {title: "Mainframe Computer", def: "A powerful computer used primarily by large organizations for critical applications and data processing."},
+  {title: "Supercomputer", def: "An extremely fast computer capable of performing complex calculations at very high speeds."},
+  {title: "Palmtop", def: "A small handheld computer designed for basic tasks like note-taking and scheduling."},
+  {title: "Tablet", def: "A portable touchscreen device larger than a phone but smaller than a laptop, used for browsing and multimedia."},
+  {title: "Cache", def: "A small, high-speed memory used to store frequently accessed data for quick retrieval."},
+  {title: "Boot", def: "The process of starting a computer and loading the operating system into memory."},
+  {title: "Bootstrap", def: "A process where a simple program loads more complex components of an operating system or application."},
+  {title: "Hibernation", def: "A power-saving state where a computer saves its current session to disk and powers off completely."},
+  {title: "Software Engineering", def: "A field of computer science focused on designing, developing, testing, and maintaining software systems."}
+);
+// Additional Hardware Terms
+terms.push(
+  {title: "Chipset", def: "A collection of electronic components that manage data communication between the processor, memory, and peripherals on a motherboard."},
+  {title: "CPU Socket", def: "A physical interface on the motherboard designed to securely hold and connect the central processing unit (CPU)."},
+  {title: "Thermal Paste", def: "A conductive material applied between a CPU or GPU and a heatsink to improve heat transfer efficiency."},
+  {title: "Northbridge", def: "A part of the motherboard chipset that connects the CPU to high-speed devices like RAM and graphics cards."},
+  {title: "Southbridge", def: "A chipset component that manages communication between the CPU and slower peripherals such as USB ports and storage devices."},
+  {title: "Bus", def: "A data transmission pathway that allows communication between computer components such as CPU, memory, and input/output devices."},
+  {title: "Clock Speed", def: "The frequency at which a CPU executes instructions, measured in gigahertz (GHz), determining its processing speed."},
+  {title: "Transistor", def: "A tiny semiconductor device that amplifies or switches electronic signals; millions of them form modern processors."},
+  {title: "ALU (Arithmetic Logic Unit)", def: "A digital circuit within the CPU responsible for performing arithmetic and logical operations."},
+  {title: "DIMM", def: "Dual Inline Memory Module; a type of physical RAM module used in desktop computers for temporary data storage."},
+  {title: "SO-DIMM", def: "A smaller version of RAM modules used primarily in laptops and compact computing devices."},
+  {title: "EEPROM", def: "Electrically Erasable Programmable Read-Only Memory; a non-volatile memory that retains data even when powered off."},
+  {title: "CMOS Battery", def: "A small battery on the motherboard that powers BIOS/UEFI settings such as system time and hardware configuration."},
+  {title: "Power Supply Unit (PSU)", def: "A hardware component that converts electrical energy from AC to DC to power internal computer components."},
+  {title: "Modular PSU", def: "A type of power supply that allows users to attach only the necessary cables for improved cable management."},
+  {title: "Heat Pipe", def: "A sealed tube containing liquid that transfers heat away from critical components through vaporization and condensation."},
+  {title: "Sound Card", def: "An internal or external expansion card that processes and outputs sound signals to speakers or headphones."},
+  {title: "Expansion Slot", def: "A slot on the motherboard that allows users to install additional hardware such as graphics or sound cards."},
+  {title: "PCIe (Peripheral Component Interconnect Express)", def: "A high-speed interface standard used to connect hardware like GPUs, SSDs, and network cards."},
+  {title: "NVMe (Non-Volatile Memory Express)", def: "A protocol that allows SSDs to directly communicate with the CPU for faster data access."},
+  {title: "Peripheral Device", def: "An external or internal device that expands computer functionality, such as a printer, scanner, or USB drive."},
+  {title: "Monitor", def: "A display device that visually presents text, images, and videos generated by the computer’s graphics processor."},
+  {title: "Touchscreen", def: "A display that detects and responds to touch input, allowing direct interaction without a physical keyboard or mouse."},
+  {title: "Printer", def: "An output device that produces hard copies of digital documents or images onto paper."},
+  {title: "Scanner", def: "An input device that converts physical documents or images into digital form for storage or editing."},
+  {title: "Webcam", def: "A small digital camera connected to a computer, used for capturing live video or participating in video calls."},
+  {title: "Microphone", def: "An input device that captures sound and converts it into electrical signals or digital data."},
+  {title: "Projector", def: "An output device that projects computer images or videos onto a large surface or screen."},
+  {title: "Joystick", def: "An input device used to control movement in games and simulations by tilting a stick in various directions."},
+  {title: "Touchpad", def: "A flat, touch-sensitive surface used to control the pointer on laptops without a physical mouse."},
+  {title: "Docking Station", def: "A hardware accessory that allows a laptop to connect easily to multiple peripherals like monitors and keyboards."},
+  {title: "Cooling System", def: "A combination of fans, heat sinks, and liquid coolers used to prevent hardware from overheating."},
+  {title: "Liquid Cooling", def: "A cooling method that circulates liquid through tubes to absorb and dissipate heat from components like CPUs and GPUs."},
+  {title: "Chassis", def: "The physical frame or enclosure that houses all computer components, commonly known as the computer case."},
+  {title: "Bezel", def: "The outer frame around a monitor or screen that holds the display in place."},
+  {title: "Backplane", def: "A circuit board that connects several other boards together through slots or connectors in large systems."},
+  {title: "Port", def: "A physical interface on a computer that allows the connection of peripherals and data transfer."},
+  {title: "I/O Shield", def: "A metal plate that fits into the back of a computer case, aligning with motherboard ports to protect and guide connectors."},
+  {title: "Power Connector", def: "A cable interface used to supply electrical power from the PSU to other components like the motherboard or drives."},
+  {title: "Adapter Card", def: "An expansion card added to a computer to provide extra capabilities such as sound, graphics, or networking."},
+  {title: "Ribbon Cable", def: "A flat cable composed of multiple conducting wires running parallel, used to connect internal components."},
+  {title: "Daughterboard", def: "A smaller circuit board that connects to and extends the functionality of the motherboard."},
+  {title: "Firmware", def: "Permanent software programmed into hardware devices that controls their low-level operations."},
+  {title: "SCSI", def: "Small Computer System Interface; an older standard for connecting and transferring data between computers and peripherals."},
+  {title: "RAID", def: "Redundant Array of Independent Disks; a technology that combines multiple drives for data redundancy or performance improvement."},
+  {title: "UPS", def: "Uninterruptible Power Supply; a backup power device that provides temporary power during electrical outages."},
+  {title: "Dock Port", def: "A connection interface that links a laptop to external peripherals through a single connection point."},
+  {title: "Backlight", def: "A light source behind an LCD display that illuminates the screen for visibility."},
+  {title: "Vapor Chamber", def: "An advanced cooling component that spreads heat evenly across a large area to improve thermal efficiency."},
+  {title: "M.2 Slot", def: "A compact connector on modern motherboards used for high-speed NVMe SSDs and other modules."},
+  {title: "SD Card", def: "Secure Digital Card; a small flash memory card used for portable data storage in cameras and laptops."},
+  {title: "Power Button", def: "A hardware switch used to turn the computer on or off."},
+  {title: "Reset Button", def: "A hardware button that restarts the computer immediately without turning off the power."},
+  {title: "Power Cable", def: "A cable that supplies electricity from an outlet to the power supply or monitor."},
+  {title: "Ethernet Port", def: "A network port on the motherboard or network card used to connect a computer to wired networks."},
+  {title: "Expansion Bay", def: "A slot in the computer case designed for adding storage drives or optical drives."},
+  {title: "BIOS Chip", def: "A small integrated circuit on the motherboard that stores the firmware used to boot the computer."},
+  {title: "POST", def: "Power-On Self-Test; a diagnostic process that checks hardware components before the computer starts the OS."},
+  {title: "Front Panel Connector", def: "Wires connecting the case’s power button, LEDs, and USB ports to the motherboard."},
+  {title: "Thermal Sensor", def: "A component that measures temperature inside the computer and helps regulate cooling systems."},
+  {title: "LED Indicator", def: "A small light that shows system activity such as power, storage, or network status."},
+  {title: "Beep Code", def: "Audible signals generated by BIOS during startup to indicate hardware status or errors."}
+);
+// Additional Software & Operating System Terms
+terms.push(
+  {title: "Kernel", def: "The core part of an operating system that manages system resources, hardware communication, and process scheduling."},
+  {title: "Driver", def: "A specialized software that allows the operating system to communicate with hardware devices."},
+  {title: "Shell", def: "An interface, either graphical or command-line, through which users interact with the operating system."},
+  {title: "GUI (Graphical User Interface)", def: "A visual interface that allows users to interact with software using icons, buttons, and menus instead of text commands."},
+  {title: "CLI (Command Line Interface)", def: "A text-based interface that allows users to execute commands directly by typing them."},
+  {title: "Bootloader", def: "A small program that loads the operating system into memory during startup."},
+  {title: "Patch", def: "A software update designed to fix bugs, improve performance, or enhance security."},
+  {title: "Service Pack", def: "A collection of updates, patches, and enhancements released together for an operating system or application."},
+  {title: "Registry", def: "A database in Windows that stores configuration settings and options for the operating system and applications."},
+  {title: "Command Prompt", def: "A Windows utility that allows users to execute text-based commands to perform administrative tasks."},
+  {title: "Task Manager", def: "A system utility that provides information about running processes, system performance, and resource usage."},
+  {title: "Control Panel", def: "A Windows feature used to manage hardware settings, user accounts, and installed programs."},
+  {title: "System Restore", def: "A feature that allows a user to revert a computer's state to a previous point in time to fix system errors."},
+  {title: "Safe Mode", def: "A diagnostic startup mode that loads only essential system drivers to help troubleshoot problems."},
+  {title: "Virtual Memory", def: "A portion of storage used as temporary RAM when physical memory runs low, allowing larger workloads."},
+  {title: "Cache Memory", def: "A small, high-speed memory that stores frequently accessed data for faster processing."},
+  {title: "Swap File", def: "A file used by the operating system to temporarily store data that cannot fit into RAM."},
+  {title: "Taskbar", def: "A user interface element in Windows used to launch and manage running applications."},
+  {title: "Desktop Environment", def: "A graphical interface that provides users with windows, icons, and menus for managing files and applications."},
+  {title: "File System", def: "A structure used by operating systems to organize and store files on drives."},
+  {title: "Boot Sector", def: "A section of a storage device that contains machine code to start the boot process."},
+  {title: "Startup Program", def: "An application or service that automatically launches when the computer boots."},
+  {title: "Daemon", def: "A background process in UNIX or Linux systems that handles system or network tasks."},
+  {title: "Service", def: "A background process in Windows that supports system functions or other applications."},
+  {title: "Package Manager", def: "A tool in Linux and macOS used to install, update, and manage software packages."},
+  {title: "Terminal", def: "A command-line environment used in macOS and Linux to execute commands and run scripts."},
+  {title: "Process", def: "An instance of a running program, managed and scheduled by the operating system."},
+  {title: "Thread", def: "A smaller sequence of programmed instructions that can be executed independently within a process."},
+  {title: "Multitasking", def: "The ability of an operating system to execute multiple processes simultaneously."},
+  {title: "Interrupt", def: "A signal to the CPU indicating that an event requires immediate attention."},
+  {title: "Scheduler", def: "A part of the operating system that decides the order in which processes are executed."},
+  {title: "System Call", def: "A request made by a program to the operating system to perform a specific service such as file handling or I/O."},
+  {title: "Resource Manager", def: "A system component responsible for allocating and controlling hardware and software resources."},
+  {title: "Operating System Architecture", def: "The structure and design principles that define how different parts of the operating system interact."},
+  {title: "Virtualization", def: "The process of creating virtual versions of hardware or software resources, such as virtual machines."},
+  {title: "Hypervisor", def: "Software that enables multiple operating systems to run simultaneously on a single physical machine."},
+  {title: "Containerization", def: "A lightweight form of virtualization where applications run in isolated environments called containers."},
+  {title: "System Log", def: "A record maintained by the operating system containing information about system activities and errors."},
+  {title: "Event Viewer", def: "A Windows tool that displays logs of application, system, and security events."},
+  {title: "Windows Registry Editor", def: "A tool used to view and modify settings stored in the Windows registry."},
+  {title: "File Compression", def: "The process of reducing file size to save storage space or speed up data transfer."},
+  {title: "Archive File", def: "A file that contains one or more compressed files, such as ZIP or RAR."},
+  {title: "Defragmentation", def: "The process of reorganizing fragmented data on a disk to improve read and write performance."},
+  {title: "System Update", def: "An upgrade to the operating system that includes improvements, new features, and security patches."},
+  {title: "User Account", def: "A personal profile that stores settings, permissions, and files for each computer user."},
+  {title: "Administrator", def: "A user with the highest level of control over system configurations and security settings."},
+  {title: "Guest Account", def: "A temporary user account with limited permissions, often used for visitors."},
+  {title: "File Permissions", def: "Rules that define who can read, write, or execute a particular file or folder."},
+  {title: "Task Scheduler", def: "A system utility that automates the execution of scripts or programs at predefined times."},
+  {title: "Clipboard", def: "A temporary storage area used for copying and pasting data between applications."},
+  {title: "Shortcut", def: "A small file or icon that links directly to another file, folder, or application for quick access."},
+  {title: "Recycle Bin", def: "A temporary storage for deleted files that allows users to recover them before permanent deletion."},
+  {title: "Logon Screen", def: "The interface that appears when a user starts a computer, requiring credentials to access the system."},
+  {title: "Shell Script", def: "A text file containing commands executed by a UNIX or Linux shell interpreter."},
+  {title: "Batch File", def: "A text file in Windows containing a series of commands that run automatically in sequence."},
+  {title: "Power Options", def: "System settings that control how the computer uses energy and manages sleep or hibernation."},
+  {title: "Update Manager", def: "A tool that automatically checks for and installs available software and system updates."},
+  {title: "System Preferences", def: "The macOS equivalent of Control Panel, used to manage system and hardware settings."},
+  {title: "Activity Monitor", def: "A macOS utility that shows resource usage, processes, and system performance."},
+  {title: "Disk Utility", def: "A macOS tool used for managing storage devices, formatting drives, and repairing disk errors."},
+  {title: "Boot Camp", def: "A macOS utility that allows users to install and run Windows on Apple computers."},
+  {title: "Registry Hive", def: "A major section of the Windows registry that stores configuration data for the operating system and users."},
+  {title: "Driver Signature", def: "A digital verification that ensures a driver has not been altered or tampered with."},
+  {title: "Firmware Update", def: "A process that installs new firmware on hardware to fix bugs or improve performance."},
+  {title: "Recovery Mode", def: "A special boot environment used to troubleshoot, repair, or reinstall the operating system."},
+  {title: "File Explorer", def: "A Windows application that allows users to navigate, manage, and organize files and folders."},
+  {title: "Taskbar Notification Area", def: "The section of the Windows taskbar that displays system icons and background processes."},
+  {title: "Process Explorer", def: "An advanced system utility that provides detailed information about running processes and handles."},
+  {title: "User Interface", def: "The means through which users interact with software, combining input and output elements."},
+  {title: "System Utility", def: "A category of software designed to help analyze, configure, optimize, or maintain a computer."},
+  {title: "Virtual Desktop", def: "A feature that allows users to organize multiple workspaces on a single computer."},
+  {title: "Startup Repair", def: "A system tool that fixes issues preventing Windows from starting properly."},
+  {title: "Safe Boot", def: "A macOS startup mode similar to Windows Safe Mode, used for troubleshooting system issues."},
+  {title: "Command-Line Argument", def: "A value passed to a program when it starts, used to modify its behavior or input."},
+  {title: "Resource Monitor", def: "A system utility that provides detailed statistics on CPU, memory, disk, and network usage."},
+  {title: "Paging File", def: "A Windows file used as virtual memory to supplement physical RAM."},
+  {title: "Log File", def: "A text file that records events, messages, and system activities for monitoring and troubleshooting."},
+  {title: "System Configuration (msconfig)", def: "A Windows tool used to manage startup processes and system boot options."},
+  {title: "Windows Explorer", def: "The graphical file management interface in Microsoft Windows operating systems."},
+  {title: "Disk Cleanup", def: "A Windows utility that removes temporary and unnecessary files to free up disk space."},
+  {title: "System File Checker", def: "A Windows tool that scans and repairs corrupted or missing system files."},
+  {title: "Windows Update", def: "A built-in service that automatically downloads and installs updates for the operating system and drivers."},
+  {title: "Registry Key", def: "An element in the Windows registry that stores configuration data for the operating system and applications."},
+  {title: "User Mode", def: "A restricted operating mode where user applications run with limited access to system resources."},
+  {title: "Kernel Mode", def: "A privileged mode where the operating system’s core has full access to hardware and system memory."}
+);
+// Additional Networking & Internet Terms
+terms.push(
+  {title: "Bandwidth", def: "The maximum amount of data that can be transmitted over a network connection in a given amount of time, usually measured in Mbps or Gbps."},
+  {title: "Latency", def: "The time it takes for data to travel from the source to the destination across a network, usually measured in milliseconds."},
+  {title: "Ping", def: "A network utility used to test the reachability of a host and measure the round-trip time of messages sent."},
+  {title: "Packet", def: "A small block of data transmitted across a network that includes both control information and user data."},
+  {title: "Protocol", def: "A set of standardized rules that define how data is transmitted and received over a network."},
+  {title: "TCP/IP", def: "A suite of communication protocols used to connect network devices on the Internet."},
+  {title: "IP Address", def: "A unique numerical identifier assigned to each device connected to a network."},
+  {title: "IPv4", def: "An Internet Protocol version that uses 32-bit addresses, represented as four decimal numbers separated by dots."},
+  {title: "IPv6", def: "A newer Internet Protocol version that uses 128-bit addresses, allowing for a much larger address space."},
+  {title: "Subnet Mask", def: "A 32-bit number used to divide an IP address into network and host portions."},
+  {title: "Gateway", def: "A network device that connects two different networks and routes traffic between them."},
+  {title: "Router", def: "A networking device that directs data packets between computer networks."},
+  {title: "Switch", def: "A networking device that connects multiple devices on a LAN and forwards data only to the destination device."},
+  {title: "Hub", def: "A simple networking device that broadcasts incoming data packets to all connected devices."},
+  {title: "Bridge", def: "A network device used to connect and filter traffic between two LAN segments."},
+  {title: "Modem", def: "A device that modulates and demodulates digital signals for communication over telephone lines or cable systems."},
+  {title: "Access Point", def: "A device that allows wireless devices to connect to a wired network using Wi-Fi."},
+  {title: "Network Interface Card (NIC)", def: "A hardware component that allows a computer to connect to a network."},
+  {title: "MAC Address", def: "A unique identifier assigned to a network interface for communication within a network segment."},
+  {title: "SSID", def: "The name of a wireless network that identifies it to users and devices."},
+  {title: "DNS (Domain Name System)", def: "A system that translates domain names like www.example.com into IP addresses."},
+  {title: "Domain Name", def: "The human-readable address of a website, such as google.com."},
+  {title: "URL (Uniform Resource Locator)", def: "The address used to access resources on the Internet, consisting of protocol, domain, and path."},
+  {title: "HTTP (Hypertext Transfer Protocol)", def: "A protocol used for transferring web pages over the Internet."},
+  {title: "HTTPS", def: "A secure version of HTTP that uses encryption to protect data exchanged between browser and server."},
+  {title: "FTP (File Transfer Protocol)", def: "A standard network protocol used to transfer files between computers."},
+  {title: "SMTP (Simple Mail Transfer Protocol)", def: "A protocol used for sending email messages across networks."},
+  {title: "POP3", def: "A protocol used by email clients to retrieve messages from a mail server."},
+  {title: "IMAP", def: "A mail protocol that allows users to access emails stored on a remote server in real-time."},
+  {title: "VPN (Virtual Private Network)", def: "A service that encrypts your internet connection and hides your IP address for secure communication."},
+  {title: "Firewall", def: "A network security device or software that monitors and controls incoming and outgoing network traffic."},
+  {title: "Proxy Server", def: "An intermediary server that separates end users from the websites they browse, often used for security or anonymity."},
+  {title: "DHCP (Dynamic Host Configuration Protocol)", def: "A protocol that automatically assigns IP addresses to devices on a network."},
+  {title: "NAT (Network Address Translation)", def: "A method that allows multiple devices on a local network to share a single public IP address."},
+  {title: "LAN (Local Area Network)", def: "A network that connects computers within a limited area such as a home, school, or office."},
+  {title: "WAN (Wide Area Network)", def: "A network that covers a large geographic area, connecting multiple LANs."},
+  {title: "MAN (Metropolitan Area Network)", def: "A network that spans a city or campus, connecting multiple LANs within that area."},
+  {title: "PAN (Personal Area Network)", def: "A small network created around an individual, typically using Bluetooth or USB."},
+  {title: "Intranet", def: "A private network accessible only to an organization's members, employees, or authorized users."},
+  {title: "Extranet", def: "An extended intranet that allows access to external partners, vendors, or clients."},
+  {title: "Cloud Computing", def: "The delivery of computing services like servers, storage, and software over the Internet."},
+  {title: "Data Center", def: "A facility that houses computer systems and associated components for data storage and processing."},
+  {title: "Server", def: "A computer or system that provides data, resources, or services to other computers over a network."},
+  {title: "Client", def: "A device or program that requests and uses resources from a server."},
+  {title: "Peer-to-Peer (P2P)", def: "A network model where computers share resources directly without a central server."},
+  {title: "Port Number", def: "A numerical identifier used to distinguish different network services on a device."},
+  {title: "DNS Server", def: "A server that translates domain names into corresponding IP addresses."},
+  {title: "DHCP Server", def: "A network server that dynamically assigns IP addresses to devices within a network."},
+  {title: "Proxy", def: "A system or server that acts as an intermediary between users and the websites they access."},
+  {title: "ISP (Internet Service Provider)", def: "A company that provides Internet access to customers."},
+  {title: "Gateway Router", def: "A device that connects a local network to external networks such as the Internet."},
+  {title: "Load Balancer", def: "A device that distributes network traffic across multiple servers to ensure performance and reliability."},
+  {title: "Network Topology", def: "The arrangement of various elements (links, nodes, etc.) of a computer network."},
+  {title: "Bus Topology", def: "A network configuration where all devices share a single communication line or cable."},
+  {title: "Star Topology", def: "A network setup where all devices connect to a central hub or switch."},
+  {title: "Ring Topology", def: "A configuration where each device connects to two others, forming a circular path for data."},
+  {title: "Mesh Topology", def: "A network where each node is connected to multiple other nodes for redundancy."},
+  {title: "Tree Topology", def: "A hybrid network structure combining characteristics of bus and star topologies."},
+  {title: "Network Cable", def: "Physical media used to connect and transmit data between devices on a network."},
+  {title: "Ethernet", def: "A widely used networking technology for local area networks using cables for communication."},
+  {title: "Coaxial Cable", def: "A type of cable with a central conductor used for transmitting data, video, and radio signals."},
+  {title: "Fiber Optic Cable", def: "A high-speed data transmission cable that uses light signals instead of electrical signals."},
+  {title: "Cat5e Cable", def: "An Ethernet cable standard that supports speeds up to 1 Gbps."},
+  {title: "Cat6 Cable", def: "An improved Ethernet cable supporting speeds up to 10 Gbps with reduced interference."},
+  {title: "Ping Command", def: "A command-line tool used to test connectivity between network devices."},
+  {title: "Traceroute", def: "A tool that tracks the path packets take from one computer to another."},
+  {title: "ARP (Address Resolution Protocol)", def: "A protocol used to map IP addresses to physical MAC addresses."},
+  {title: "ICMP", def: "A protocol used for sending error messages and operational information, such as with the ping command."},
+  {title: "DNS Lookup", def: "The process of translating a domain name into its corresponding IP address."},
+  {title: "Proxy Cache", def: "Temporary storage used by proxy servers to store frequently accessed web content."},
+  {title: "Firewall Rule", def: "A set of criteria that controls network traffic through a firewall."},
+  {title: "Port Forwarding", def: "A technique that redirects communication requests from one address and port number to another."},
+  {title: "Bandwidth Throttling", def: "The intentional slowing down of Internet service by an Internet service provider or network administrator."},
+  {title: "QoS (Quality of Service)", def: "A feature that prioritizes certain types of network traffic to ensure reliable performance."},
+  {title: "Network Latency", def: "The time delay experienced in a network while data is being transferred."},
+  {title: "Data Packet Loss", def: "Occurs when one or more data packets fail to reach their destination across a network."},
+  {title: "Proxy Authentication", def: "A security mechanism that requires users to verify identity before accessing a proxy server."},
+  {title: "VPN Tunnel", def: "An encrypted connection between your device and a VPN server for secure communication."},
+  {title: "Wireless Network", def: "A network that uses radio signals rather than cables for data transmission."},
+  {title: "SSID Broadcast", def: "The process of making a Wi-Fi network name visible to nearby devices."},
+  {title: "Network Encryption", def: "The process of securing data transmitted over a network using cryptographic techniques."},
+  {title: "IP Conflict", def: "Occurs when two devices on the same network are assigned the same IP address."},
+  {title: "Ping of Death", def: "A type of attack that crashes a system by sending oversized ping packets."},
+  {title: "Traceroute Command", def: "A network diagnostic tool used to identify the path data takes to reach its destination."},
+  {title: "IPv6 Address", def: "A 128-bit address format that supports a much larger number of devices on the Internet."},
+  {title: "Default Gateway", def: "The device that routes traffic from a local network to other networks or the Internet."},
+  {title: "Proxy Filtering", def: "A technique used to block or allow access to specific websites or network resources through a proxy."}
+);
+// Additional Cybersecurity Terms
+terms.push(
+  {title: "Authentication", def: "The process of verifying the identity of a user, device, or system before granting access."},
+  {title: "Authorization", def: "The process of granting or denying specific permissions to a user or system after authentication."},
+  {title: "Encryption Key", def: "A string of data used to encrypt and decrypt information to keep it secure."},
+  {title: "Decryption", def: "The process of converting encrypted data back into its original form."},
+  {title: "SSL (Secure Sockets Layer)", def: "A protocol for establishing encrypted links between web servers and browsers to secure communications."},
+  {title: "TLS (Transport Layer Security)", def: "An updated version of SSL that provides secure communication over a network."},
+  {title: "Two-Factor Authentication (2FA)", def: "A security method requiring two forms of verification to access an account or system."},
+  {title: "Multi-Factor Authentication (MFA)", def: "A security system that requires two or more independent credentials to verify a user’s identity."},
+  {title: "Password Manager", def: "A software tool that stores and manages passwords securely for multiple accounts."},
+  {title: "Brute Force Attack", def: "A method where an attacker tries all possible password combinations to gain unauthorized access."},
+  {title: "Phishing", def: "A cyberattack where malicious actors trick users into revealing sensitive information like passwords or credit card numbers."},
+  {title: "Spear Phishing", def: "A targeted phishing attack aimed at a specific individual or organization."},
+  {title: "Whaling", def: "A phishing attack targeting high-profile individuals like executives to steal sensitive information."},
+  {title: "Social Engineering", def: "The manipulation of people into revealing confidential information or performing actions that compromise security."},
+  {title: "Malware", def: "Any software intentionally designed to cause damage to computers or networks, including viruses, worms, and trojans."},
+  {title: "Ransomware", def: "Malware that locks or encrypts a user’s files and demands payment to restore access."},
+  {title: "Trojan Horse", def: "Malicious software disguised as legitimate software to deceive users and gain unauthorized access."},
+  {title: "Spyware", def: "Malware that secretly monitors and collects user activity or personal information without consent."},
+  {title: "Adware", def: "Software that displays unwanted advertisements, often bundled with other programs."},
+  {title: "Rootkit", def: "A set of programs designed to hide malware or unauthorized activities on a computer system."},
+  {title: "Keylogger", def: "A program that records every keystroke made by a user to capture sensitive information like passwords."},
+  {title: "Denial of Service (DoS)", def: "An attack that overloads a system or network to make it unavailable to users."},
+  {title: "Distributed Denial of Service (DDoS)", def: "A DoS attack carried out using multiple systems to amplify its impact."},
+  {title: "Firewall", def: "A system or device that monitors and controls incoming and outgoing network traffic based on security rules."},
+  {title: "Intrusion Detection System (IDS)", def: "A system that monitors networks for suspicious activities or security policy violations."},
+  {title: "Intrusion Prevention System (IPS)", def: "A system that detects and actively blocks threats on a network."},
+  {title: "VPN (Virtual Private Network)", def: "A secure connection that encrypts data and hides the user’s IP address when using the internet."},
+  {title: "Zero-Day Exploit", def: "A security vulnerability that is exploited before the developer releases a fix or patch."},
+  {title: "Patch Management", def: "The process of regularly updating software to fix vulnerabilities and improve security."},
+  {title: "Penetration Testing", def: "A simulated cyberattack to identify vulnerabilities in systems, networks, or applications."},
+  {title: "Ethical Hacker", def: "A cybersecurity professional who tests systems for vulnerabilities to improve security legally."},
+  {title: "Cyber Threat", def: "Any potential malicious activity aimed at stealing, disrupting, or damaging digital assets."},
+  {title: "Incident Response", def: "The process of identifying, analyzing, and responding to security incidents."},
+  {title: "Data Breach", def: "An incident where sensitive information is accessed or disclosed without authorization."},
+  {title: "Security Policy", def: "A formal set of rules and practices that defines how to protect an organization's digital assets."},
+  {title: "Digital Certificate", def: "An electronic document that proves the ownership of a public key and authenticates identity online."},
+  {title: "Public Key Infrastructure (PKI)", def: "A system of digital certificates, encryption, and certification authorities to secure communications."},
+  {title: "Authentication Token", def: "A physical or digital device used to prove a user’s identity, often for 2FA."},
+  {title: "Biometric Authentication", def: "A security process that uses unique biological traits like fingerprints or facial recognition to verify identity."},
+  {title: "Encryption", def: "The process of converting information into a code to prevent unauthorized access."},
+  {title: "Decryption", def: "The process of converting encrypted data back into its original readable format."},
+  {title: "Hashing", def: "A method of converting data into a fixed-size string of characters, often used for passwords."},
+  {title: "Digital Forensics", def: "The investigation and analysis of computer systems to recover evidence related to cybercrimes."},
+  {title: "Cybersecurity Awareness", def: "Training and practices that help users recognize and prevent cyber threats."},
+  {title: "Two-Factor Authentication (2FA)", def: "A security method that requires two separate forms of verification to access an account."},
+  {title: "Access Control", def: "The process of limiting access to resources based on user roles and permissions."},
+  {title: "Privilege Escalation", def: "A situation where a user gains unauthorized higher-level access to a system."},
+  {title: "Security Audit", def: "A systematic evaluation of an organization's security policies, controls, and practices."},
+  {title: "Cybersecurity Framework", def: "A structured set of guidelines and best practices to manage and reduce cybersecurity risks."},
+  {title: "Threat Intelligence", def: "Information about potential or current threats to help organizations prevent or mitigate attacks."},
+  {title: "Vulnerability", def: "A weakness in a system, software, or network that can be exploited by attackers."},
+  {title: "Exploit", def: "A piece of code or technique used to take advantage of a vulnerability."},
+  {title: "Sandboxing", def: "A security mechanism that runs programs in isolated environments to prevent them from affecting the system."},
+  {title: "Incident Log", def: "A record of security-related events and actions taken for monitoring and analysis."},
+  {title: "Red Team", def: "A group of ethical hackers simulating attacks to test an organization's defenses."},
+  {title: "Blue Team", def: "A group responsible for defending against attacks and maintaining cybersecurity."},
+  {title: "Patch", def: "A software update that fixes vulnerabilities or improves security."},
+  {title: "Trojan Horse", def: "Malware disguised as legitimate software to deceive users and gain access to systems."},
+  {title: "Backdoor", def: "A hidden method of bypassing normal authentication to gain unauthorized access."},
+  {title: "Botnet", def: "A network of compromised computers controlled by an attacker to perform coordinated attacks."},
+  {title: "Key Exchange", def: "The process of securely exchanging cryptographic keys between parties."},
+  {title: "Social Engineering Attack", def: "A cyberattack that exploits human psychology rather than technical vulnerabilities."},
+  {title: "Credential Stuffing", def: "A cyberattack using stolen username-password pairs to gain unauthorized access to accounts."},
+  {title: "Man-in-the-Middle Attack", def: "An attack where the attacker secretly intercepts and alters communication between two parties."},
+  {title: "Brute-Force Attack", def: "An attack that attempts all possible password combinations to gain access to a system."},
+  {title: "Password Policy", def: "Rules defined by an organization to enforce strong and secure password usage."},
+  {title: "Data Encryption Standard (DES)", def: "An older symmetric-key encryption method used to secure data."},
+  {title: "Advanced Encryption Standard (AES)", def: "A widely used symmetric-key encryption standard for securing digital data."},
+  {title: "Public Key", def: "A cryptographic key used in asymmetric encryption that can be shared publicly."},
+  {title: "Private Key", def: "A cryptographic key kept secret, used with a public key to decrypt information."},
+  {title: "Digital Signature", def: "A cryptographic method used to verify the authenticity and integrity of data or messages."},
+  {title: "Zero Trust Security", def: "A cybersecurity model that requires verification for every device and user trying to access resources, even inside the network."}
+);
+// Additional Programming & Software Development Terms
+terms.push(
+  {title: "Algorithm", def: "A step-by-step procedure or formula for solving a problem or performing a task in programming."},
+  {title: "Array", def: "A data structure that stores multiple values of the same type in a single, indexed collection."},
+  {title: "Variable", def: "A named storage location in a program that holds data which can change during execution."},
+  {title: "Constant", def: "A storage location in a program that holds data which does not change during execution."},
+  {title: "Function", def: "A reusable block of code designed to perform a specific task or calculation when called."},
+  {title: "Method", def: "A function that is associated with an object or class in object-oriented programming."},
+  {title: "Class", def: "A blueprint for creating objects, defining properties (attributes) and behaviors (methods)."},
+  {title: "Object", def: "An instance of a class containing data and methods that operate on that data."},
+  {title: "Inheritance", def: "A feature in object-oriented programming where one class can acquire the properties and methods of another class."},
+  {title: "Polymorphism", def: "The ability of objects or methods to take on multiple forms, allowing flexibility in programming."},
+  {title: "Encapsulation", def: "A programming concept where data and methods are bundled together, restricting direct access to some components."},
+  {title: "Abstraction", def: "The process of hiding complex implementation details while exposing only the essential features of a class or function."},
+  {title: "Loop", def: "A control structure that repeats a block of code multiple times until a certain condition is met."},
+  {title: "For Loop", def: "A type of loop that runs a block of code a predetermined number of times."},
+  {title: "While Loop", def: "A type of loop that runs a block of code repeatedly while a condition remains true."},
+  {title: "Do-While Loop", def: "A loop that executes a block of code at least once and then repeats it while a condition is true."},
+  {title: "Conditional Statement", def: "A programming construct that executes certain code only if a specified condition is true."},
+  {title: "If-Else Statement", def: "A conditional statement that executes one block of code if a condition is true and another if it is false."},
+  {title: "Switch Statement", def: "A control structure that selects one of many code blocks to execute based on a value."},
+  {title: "Data Type", def: "A classification that specifies what type of value a variable can hold, such as integer, string, or boolean."},
+  {title: "String", def: "A sequence of characters used to represent text in programming."},
+  {title: "Integer", def: "A whole number value without decimal points used in programming."},
+  {title: "Float", def: "A numerical data type used to represent decimal numbers."},
+  {title: "Boolean", def: "A data type representing one of two values: true or false."},
+  {title: "ArrayList", def: "A dynamic array data structure that can grow or shrink in size as needed."},
+  {title: "Linked List", def: "A data structure consisting of nodes where each node contains data and a reference to the next node."},
+  {title: "Stack", def: "A data structure that follows Last-In-First-Out (LIFO) order for adding and removing elements."},
+  {title: "Queue", def: "A data structure that follows First-In-First-Out (FIFO) order for adding and removing elements."},
+  {title: "Recursion", def: "A programming technique where a function calls itself to solve smaller instances of a problem."},
+  {title: "Pointer", def: "A variable that stores the memory address of another variable."},
+  {title: "Exception", def: "An error or unexpected event that occurs during program execution and can be handled by special code."},
+  {title: "Try-Catch Block", def: "A construct used to handle exceptions and prevent program crashes."},
+  {title: "Compiler", def: "A program that translates high-level source code into machine code that a computer can execute."},
+  {title: "Interpreter", def: "A program that executes source code line by line without producing a separate machine code file."},
+  {title: "IDE (Integrated Development Environment)", def: "Software that provides tools for writing, testing, and debugging code in a unified interface."},
+  {title: "Debugging", def: "The process of finding and fixing errors or bugs in a program."},
+  {title: "Framework", def: "A pre-written set of libraries and tools that provides a structure for developing software applications."},
+  {title: "Library", def: "A collection of pre-written code that developers can use to perform common tasks."},
+  {title: "API (Application Programming Interface)", def: "A set of rules and tools for building software and allowing different programs to communicate."},
+  {title: "SDK (Software Development Kit)", def: "A package of tools, libraries, and documentation for developing applications for a specific platform."},
+  {title: "Version Control", def: "A system that tracks changes to code over time, allowing multiple developers to collaborate efficiently."},
+  {title: "Git", def: "A distributed version control system used to track code changes and manage collaborative projects."},
+  {title: "Repository", def: "A storage location for code files and their version history, often managed using Git."},
+  {title: "Commit", def: "An action in version control that saves changes to a repository with a descriptive message."},
+  {title: "Branch", def: "A parallel version of the code in a repository that allows development without affecting the main codebase."},
+  {title: "Merge", def: "The process of combining code changes from different branches into a single branch."},
+  {title: "Pull Request", def: "A request to merge code changes from one branch into another, often used in collaborative development."},
+  {title: "Continuous Integration (CI)", def: "A development practice where code changes are automatically tested and integrated into the main branch."},
+  {title: "Continuous Deployment (CD)", def: "A process where code changes are automatically released to production after passing tests."},
+  {title: "Agile Methodology", def: "A software development approach that emphasizes iterative development, collaboration, and flexibility."},
+  {title: "Scrum", def: "An agile framework that organizes work in short iterations called sprints with regular reviews and standups."},
+  {title: "Kanban", def: "A visual workflow management method that helps track tasks and progress in software development."},
+  {title: "Unit Testing", def: "Testing individual components or functions of a program to ensure they work as intended."},
+  {title: "Integration Testing", def: "Testing combined components to verify they work together correctly."},
+  {title: "System Testing", def: "Testing the complete application to ensure it meets requirements and performs correctly."},
+  {title: "Debugging Tools", def: "Software utilities that help identify, trace, and fix errors in code."},
+  {title: "Code Review", def: "The process of examining another developer’s code to ensure quality, readability, and adherence to standards."},
+  {title: "Refactoring", def: "The process of restructuring existing code to improve readability, efficiency, or maintainability without changing its behavior."},
+  {title: "Object-Oriented Programming (OOP)", def: "A programming paradigm based on objects that contain data and methods to model real-world entities."},
+  {title: "Procedural Programming", def: "A programming paradigm based on procedures or routines that execute sequentially to solve problems."},
+  {title: "Functional Programming", def: "A programming paradigm that treats computation as the evaluation of mathematical functions without changing state."},
+  {title: "Event-Driven Programming", def: "A programming paradigm where the flow of the program is determined by events like user actions or messages."},
+  {title: "Responsive Design", def: "An approach to designing user interfaces that adapt to different screen sizes and devices."},
+  {title: "Version Number", def: "A unique identifier assigned to a software release to track updates and changes."},
+  {title: "Build", def: "The process of compiling and packaging code into a usable application."},
+  {title: "Deployment", def: "The process of installing, configuring, and enabling software to be used in a production environment."}
+);
+
+
+  // Build alphabet bar A–Z
+  function buildAlphabet() {
+    const bar = document.getElementById("alphabetBar");
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+    alphabet.forEach(letter => {
+      let div = document.createElement("div");
+      div.textContent = letter;
+      div.onclick = () => showTerms(letter);
+      bar.appendChild(div);
+    });
+  }
+
+  // Show terms for a given letter
+  function showTerms(letter, filter="") {
+    const area = document.getElementById("termsArea");
+    area.innerHTML = "";
+
+    let filtered = terms
+      .filter(t => t.title[0].toUpperCase() === letter)
+      .filter(t => t.title.toLowerCase().includes(filter.toLowerCase()))
+      .sort((a,b) => a.title.localeCompare(b.title));
+
+    filtered.forEach(term => {
+      let box = document.createElement("div");
+      box.classList.add("term-box");
+      box.textContent = term.title;
+
+      let defDiv = document.createElement("div");
+      defDiv.classList.add("definition");
+      defDiv.textContent = term.def;
+
+      box.onclick = () => {
+        defDiv.style.display = (defDiv.style.display === "block") ? "none" : "block";
+      };
+
+      box.appendChild(defDiv);
+      area.appendChild(box);
+    });
+  }
+
+  // Search functionality
+  document.getElementById("searchInput").addEventListener("input", function() {
+    const filter = this.value;
+    if (!filter) {
+      document.getElementById("termsArea").innerHTML = "";
+      return;
+    }
+    const area = document.getElementById("termsArea");
+    area.innerHTML = "";
+    let filtered = terms
+      .filter(t => t.title.toLowerCase().includes(filter.toLowerCase()))
+      .sort((a,b) => a.title.localeCompare(b.title));
+
+    filtered.forEach(term => {
+      let box = document.createElement("div");
+      box.classList.add("term-box");
+      box.textContent = term.title;
+
+      let defDiv = document.createElement("div");
+      defDiv.classList.add("definition");
+      defDiv.textContent = term.def;
+
+      box.onclick = () => {
+        defDiv.style.display = (defDiv.style.display === "block") ? "none" : "block";
+      };
+
+      box.appendChild(defDiv);
+      area.appendChild(box);
+    });
+  });
+
+  // Initialize
+  window.onload = () => {
+    buildAlphabet();
+    showTerms("A"); // default load A
+  };
+</script>
+</body>
+</html>

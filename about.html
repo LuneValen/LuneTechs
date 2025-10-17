@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - LuneTechs</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+      padding-top: 30px;
+      overflow-x: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Navbar */
+ .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;              /* ensures it ends exactly with the page edge */
+  width: 100vw;          /* make it match the viewport width precisely */
+  background: #0080ff;
+  box-shadow: none !important;
+  border: none !important;
+  z-index: 1000;
+  overflow-x: hidden;    /* prevents the navbar from causing scroll */
+}
+    nav.navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px;
+      padding-right: 75px;
+      background: #0080ff;
+      display: flex;
+      justify-content: flex-end;
+    }
+    nav.navbar ul li {
+      margin: 0 20px;
+    }
+    nav.navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-weight: normal;
+      font-size: 15px;
+    }
+    nav.navbar ul li a:hover {
+      color: #e7f708;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px 20px;
+      background: linear-gradient(to right, #4e976c, #00000059, #4e976c);
+      color: white;
+      margin-top: 3px; /* move it slightly below navbar */
+    }
+    .hero-logo img {
+      width: 160px;
+      max-width: 100%;
+      margin-right: 30px;
+    }
+    .hero-text {
+      max-width: 600px;
+      text-align: center;
+      margin-left: -40px; /* bring closer to logo */
+    }
+    .hero-text h1 {
+      font-size: 40px;
+      margin: 0;
+    }
+    .hero-text p {
+      margin-top: 10px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .about-section h2 {
+      text-align: center;
+      font-size: 32px;
+      color: #0073e6;
+      margin-bottom: 40px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+    .info-card {
+      background: white;
+      padding: 25px;
+      border-radius: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .info-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+      background-color: #e7e7e9;
+    }
+    .info-card h3 {
+      color: #0073e6;
+      margin-bottom: 12px;
+    }
+    .info-card p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+   /* ==========================
+   Responsive Design Section
+   ========================== */
+
+/* For tablets and smaller screens (width ≤ 768px) */
+@media (max-width: 768px) {
+  /* Navbar stacks vertically */
+  nav.navbar ul {
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  nav.navbar ul li {
+    margin: 10px 0;
+  }
+
+  /* Hero section stacks */
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 10px;
+  }
+
+  .hero-logo img {
+    width: 120px;
+    margin: 0 0 15px 0;
+  }
+
+  .hero-text {
+    margin-left: 0;
+  }
+
+  .hero-text h1 {
+    font-size: 30px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+  }
+
+  /* About section */
+  .about-section {
+    padding: 40px 10px;
+  }
+
+  .about-section h2 {
+    font-size: 26px;
+    margin-bottom: 25px;
+  }
+
+  /* Cards stack in one column */
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .info-card {
+    padding: 20px;
+  }
+
+  .info-card h3 {
+    font-size: 18px;
+  }
+
+  .info-card p {
+    font-size: 15px;
+  }
+}
+
+/* For very small phones (width ≤ 480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .hero-text h1 {
+    font-size: 26px;
+  }
+
+  .hero-text p {
+    font-size: 15px;
+  }
+
+  .about-section h2 {
+    font-size: 22px;
+  }
+
+  .info-card {
+    padding: 15px;
+  }
+
+  .info-card h3 {
+    font-size: 16px;
+  }
+
+  .info-card p {
+    font-size: 14px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="posts.html">Terminologies</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-logo">
+      <img src="images/Newest_logo.png" alt="LuneTechs Logo">
+    </div>
+    <div class="hero-text">
+      <h1>About LuneTechs</h1>
+      <p>Empowering learners with practical ICT knowledge and skills.</p>
+    </div>
+  </section>
+
+  <!-- About Info Section -->
+  <div class="about-section">
+    <h2>OUR STORY</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Our Mission</h3>
+        <p>Provide a friendly environment for people to learn in an easy way and get knowledge about various aspects of Information and Communication Technology (ICT).</p>
+      </div>
+      <div class="info-card">
+        <h3>Our Vision</h3>
+        <p>Create a new generation with people aware of ICT in a practical approach.</p>
+      </div>
+      <div class="info-card">
+        <h3>Our Values</h3>
+        <p>Practice is what makes someone perfect!</p>
+      </div>
+      <div class="info-card">
+        <h3>Our History</h3>
+        <p>LuneTechs started on 11th August, 2025 as a WhatsApp channel and on 20th September, 2025 started working as a website.</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
