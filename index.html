@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuneTechs_Home</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: linear-gradient(135deg, #4a00e0, #8e2de2);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px;
+      padding-right: 60px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-weight: normal;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #e7f708;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+      text-align: center;
+      padding-top: 20px;
+      overflow-x: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Hero Section with Gradient Background */
+    .hero-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 10%;
+      color: white;
+      text-align: left;
+      background: linear-gradient(135deg, #4a00e0, #8e2de2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before,
+    .hero-section::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      transform: skewX(-20deg);
+    }
+
+    .hero-section::before {
+      left: -100px;
+    }
+
+    .hero-section::after {
+      right: -100px;
+    }
+
+    .hero-logo img {
+      width: 150px;
+      height: auto;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 42px;
+      margin: 0;
+    }
+
+    .hero-text h3 {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .hero-text .tagline {
+      font-size: 16px;
+      margin-top: 15px;
+    }
+
+    /*Introduction */
+    .Intro {
+      background: linear-gradient(135deg, #4a00e0, #8e2de2);
+      color: white;
+      padding: 60px 10%;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      margin: 30px auto;
+      max-width: 1000px;
+    }
+
+    .Introduction {
+      text-align: left;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .Introduction h2 {
+      color: #ffd700;
+      font-size: 36px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ffd700;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .Introduction p {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* Welcome Section */
+    .welcome-section {
+      background-color: #0073e6;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .welcome-section h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .welcome-section p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Contact Info */
+    .contact-info-section {
+      width: 98%;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .contact-info-section h2 {
+      color: #003366;
+      margin-bottom: 20px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      /* two columns */
+      gap: 20px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .contact-item {
+      padding: 20px;
+      border-radius: 0;
+    }
+
+    .contact-item h3 {
+      margin-bottom: 10px;
+      color: #0073e6;
+    }
+
+    .contact-item p a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .contact-item p a:hover {
+      color: #0073e6;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0f0129;
+      color: rgb(248, 244, 4);
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    footer a {
+      color: #ffd700;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    footer:hover {
+      background-color: rgb(5, 0, 24);
+    }
+
+    marquee {
+      margin-top: 5px;
+      color: #ffd700;
+    }
+
+    /* ==========================
+   Responsive Design Section
+   ========================== */
+
+    /* For tablets and smaller screens (width ≤ 768px) */
+    @media (max-width: 768px) {
+
+      /* Hero section stacks vertically */
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 5%;
+      }
+
+      .hero-logo img {
+        width: 120px;
+        margin-bottom: 20px;
+      }
+
+      .hero-text h1 {
+        font-size: 32px;
+      }
+
+      .hero-text h3 {
+        font-size: 18px;
+      }
+
+      .hero-text .tagline {
+        font-size: 15px;
+      }
+
+      /* Intro section */
+      .Intro {
+        padding: 40px 8%;
+        margin: 20px auto;
+      }
+
+      .Introduction h2 {
+        font-size: 28px;
+      }
+
+      .Introduction p {
+        font-size: 17px;
+      }
+
+      /* Welcome section */
+      .welcome-section h2 {
+        font-size: 24px;
+      }
+
+      .welcome-section p {
+        font-size: 16px;
+      }
+
+      /* Contact info - single column layout */
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-item {
+        padding: 15px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+    }
+
+    /* For very small phones (width ≤ 480px) */
+    @media (max-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+
+      .hero-text h1 {
+        font-size: 26px;
+      }
+
+      .hero-text h3 {
+        font-size: 16px;
+      }
+
+      .Introduction h2 {
+        font-size: 24px;
+      }
+
+      .welcome-section h2 {
+        font-size: 20px;
+      }
+
+      footer p {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="posts.html">Terminologies</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-logo">
+      <img src="images/Newest_logo.png" alt="LuneTechs Logo">
+    </div>
+    <div class="hero-text">
+      <h1>LUNETECHS</h1>
+      <h3>LEARNING IS A LIFETIME JOURNEY</h3>
+      <div class="tagline">LuneTechs provides a friendly environment to learn in an easy way. You are welcome!</div>
+    </div>
+  </div>
+
+  <section class="Intro">
+    <div class="Introduction">
+      <h2>Why LuneTechs?</h2>
+      <p>I have explored many sources of learning materials, especially those that students use to study subject topics
+        or prepare for exams, and I have noticed that most of them are in English. This is mainly because English is an
+        international language, which allows it to reach people all over the world. This is indeed true and can be
+        clearly observed in our daily lives.
+      <p>However, even though English is an international language, it does not mean that everyone can speak or read
+        it—especially those who have not had the opportunity to attend school. Nowadays, information and communication
+        technology is developing so rapidly that we all need to keep up with the pace to cope with the current state of
+        the world.
+      </p>
+
+      Having realized this, I decided to create this platform to help people, especially Tanzanians, learn more easily
+      through the Kiswahili language, which is widely used in Tanzania. I am confident that this platform will empower
+      everyone, including those who are not familiar with English, to build a strong foundation in ICT. <br>
+
+      Why? Because this is the only place where you will find tutorials provided in the Kiswahili language. You are all
+      welcome to this website — learn the easy way! </p>
+    </div>
+  </section>
+  <!-- Welcome -->
+  <section class="welcome-section">
+    <div class="welcome-container">
+      <h2>Welcome to LuneTechs!</h2>
+      <p>
+        We are delighted to have you here! Explore our courses, read insightful posts, and grow your ICT skills
+        in an easy and friendly way. Start your learning journey today! Remember, learning is a lifetime journey,
+        so never cease studying!
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Info -->
+  <div class="contact-info-section">
+    <h2>Contact Us</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <h3>Email</h3>
+        <p><a href="mailto:lucianvalence03@gmail.com">lucianvalence03@gmail.com</a></p>
+      </div>
+      <div class="contact-item">
+        <h3>Phone</h3>
+        <p><a href="tel:+255767900522">+255 767 900 522</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 LuneTechs. All Rights Reserved.</p>
+    <marquee behavior="scroll" direction="left">
+      LuneTechs: The future of Tanzania ICT. Learning is a lifetime journey
+    </marquee>
+  </footer>
+
+</body>
+
+</html>
